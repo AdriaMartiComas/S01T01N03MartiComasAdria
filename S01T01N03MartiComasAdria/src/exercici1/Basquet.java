@@ -1,15 +1,13 @@
 package exercici1;
 
-public class Futbol extends Noticia {
+public class Basquet extends Noticia {
 	private String competicio;
 	private String club;
-	private String jugador;
-
-	public Futbol(String titular, String competicio, String club, String jugador) {
+	
+	public Basquet(String titular, String competicio, String club) {
 		super(titular);
 		this.competicio = competicio;
 		this.club = club;
-		this.jugador = jugador;
 	}
 
 	public String getCompeticio() {
@@ -27,30 +25,25 @@ public class Futbol extends Noticia {
 	public void setClub(String club) {
 		this.club = club;
 	}
-
-	public String getJugador() {
-		return jugador;
-	}
-
-	public void setJugador(String jugador) {
-		this.jugador = jugador;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "Futbol [competicio=" + competicio + ", club=" + club + ", jugador=" + jugador + "]";
+		return "Basquet [competicio=" + competicio + ", club=" + club + "]";
 	}
 
 	@Override
 	public void preuNoticia() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void puntuacioNoticia() {
 		// TODO Auto-generated method stub
-
+		
 	}
+	
+	
 
 }
