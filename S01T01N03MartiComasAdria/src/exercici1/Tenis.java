@@ -3,7 +3,7 @@ package exercici1;
 public class Tenis extends Noticia {
 	private String competicio;
 	private String tenista;
-	
+
 	public Tenis(String titular, String competicio, String tenista) {
 		super(titular);
 		this.competicio = competicio;
@@ -27,19 +27,25 @@ public class Tenis extends Noticia {
 	}
 
 	@Override
+	public String toString() {
+		return "Tenis [Titular= " + super.getTitular() + ", competicio=" + competicio + ", tenista=" + tenista + "]";
+	}
+
+	@Override
 	public void preuNoticia() {
-		// TODO Auto-generated method stub
-		
+		int preu = 150;
+
+		if (this.tenista.equalsIgnoreCase("Federer") || this.tenista.equalsIgnoreCase("Nadal")
+				|| this.tenista.equalsIgnoreCase("Djokovic"))
+			preu = preu + 100;
+
+		super.setPreu(preu);
 	}
 
 	@Override
 	public void puntuacioNoticia() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
-	
-	
 
 }

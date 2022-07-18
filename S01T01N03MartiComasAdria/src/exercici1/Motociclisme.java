@@ -18,13 +18,17 @@ public class Motociclisme extends Noticia {
 
 	@Override
 	public String toString() {
-		return "Motociclisme [equip=" + equip + "]";
+		return "Motociclisme [Titular= " + super.getTitular() + ", equip=" + equip + "]";
 	}
 
 	@Override
 	public void preuNoticia() {
-		// TODO Auto-generated method stub
+		int preu = 100;
 
+		if (this.equip.equalsIgnoreCase("Honda") || this.equip.equalsIgnoreCase("Yamaha"))
+			preu = preu + 50;
+
+		super.setPreu(preu);
 	}
 
 	@Override

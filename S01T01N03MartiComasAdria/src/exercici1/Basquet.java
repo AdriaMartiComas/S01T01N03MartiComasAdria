@@ -3,7 +3,7 @@ package exercici1;
 public class Basquet extends Noticia {
 	private String competicio;
 	private String club;
-	
+
 	public Basquet(String titular, String competicio, String club) {
 		super(titular);
 		this.competicio = competicio;
@@ -25,25 +25,28 @@ public class Basquet extends Noticia {
 	public void setClub(String club) {
 		this.club = club;
 	}
-	
 
 	@Override
 	public String toString() {
-		return "Basquet [competicio=" + competicio + ", club=" + club + "]";
+		return "Basquet [Titular= " + super.getTitular() + ", competicio=" + competicio + ", club=" + club + "]";
 	}
 
 	@Override
 	public void preuNoticia() {
-		// TODO Auto-generated method stub
-		
+		int preu = 250;
+		if (this.competicio.equalsIgnoreCase("Eurolliga"))
+			preu = preu + 75;
+
+		if (this.club.equalsIgnoreCase("Barça") || this.club.equalsIgnoreCase("Madrid"))
+			preu = preu + 100;
+
+		super.setPreu(preu);
 	}
 
 	@Override
 	public void puntuacioNoticia() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
 
 }

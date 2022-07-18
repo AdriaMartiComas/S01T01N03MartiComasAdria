@@ -18,13 +18,17 @@ public class Formula1 extends Noticia {
 
 	@Override
 	public String toString() {
-		return "Formula1 [escuderia=" + escuderia + "]";
+		return "Formula1 [Titular= " + super.getTitular() + ", escuderia=" + escuderia + "]";
 	}
 
 	@Override
 	public void preuNoticia() {
-		// TODO Auto-generated method stub
+		int preu = 100;
 
+		if (this.escuderia.equalsIgnoreCase("Ferrari") || this.escuderia.equalsIgnoreCase("Mercedes"))
+			preu = preu + 50;
+
+		super.setPreu(preu);
 	}
 
 	@Override

@@ -11,6 +11,7 @@ public class Main {
 
 		// Proves
 		llistaRedactors.add(new Redactor("Adria", "47943391Y"));
+		llistaRedactors.get(0).getNoticies().add(new Motociclisme("Marc guanya a Montmelo", "Honda"));
 
 		do {
 			switch (menu()) {
@@ -28,19 +29,98 @@ public class Main {
 				introduirNoticiaRedactor(llistaRedactors);
 				break;
 			case 4:
-//				eliminarNoticia(); // ha de demanar redactor i titular de la notícia
+				eliminarNoticiaRedactor(llistaRedactors);
 				break;
 			case 5:
-//				mostrarNoticiesRedactor(redactors);
+				mostrarNoticiesRedactor(llistaRedactors);
 				break;
 			case 6:
-//				puntuacioNoticia();
+				puntuacioNoticia(llistaRedactors);
 				break;
 			case 7:
 //				preuNoticia();
 
 			}
 		} while (!sortir);
+	}
+
+	private static void puntuacioNoticia(ArrayList<Redactor> llistaRedactors) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\nPUNTUACIO NOTÍCIA");
+		System.out.println("Introdueix el DNI del redactor:");
+		String dni = sc.nextLine();
+
+		Redactor redactorBuscat = buscarRedactor(llistaRedactors, dni);
+		if (redactorBuscat == null) {
+			System.out.println("El redactor que busques no existeix");
+
+		} else {
+			ArrayList<Noticia> noticies = redactorBuscat.getNoticies();
+			System.out.println("Introdueix el titular de la noticia: ");
+			String titular = sc.nextLine();
+
+			Noticia noticiaBuscada = buscarNoticia(noticies, titular);
+
+			if (noticiaBuscada == null) {
+				System.out.println("La noticia que busques no existeix");
+
+			} else {
+				System.out.println("la Puntuacio de la noticia: " + titular + " és de: " + noticiaBuscada.getPuntuacio()
+						+ " punts");
+
+			}
+
+		}
+	}
+
+	private static void mostrarNoticiesRedactor(ArrayList<Redactor> llistaRedactors) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\nMOSTRAR NOTÍCIES");
+		System.out.println("Introdueix el DNI del redactor:");
+		String dni = sc.nextLine();
+
+		Redactor redactorBuscat = buscarRedactor(llistaRedactors, dni);
+		if (redactorBuscat == null) {
+			System.out.println("El redactor que busques no existeix");
+
+		} else {
+			ArrayList<Noticia> noticies = redactorBuscat.getNoticies();
+
+			for (Noticia n : noticies) {
+				System.out.println(n);
+			}
+		}
+	}
+
+	private static void eliminarNoticiaRedactor(ArrayList<Redactor> llistaRedactors) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\nELIMINAR NOTÍCIA");
+		System.out.println("Introdueix el DNI del redactor:");
+		String dni = sc.nextLine();
+
+		Redactor redactorBuscat = buscarRedactor(llistaRedactors, dni);
+		if (redactorBuscat == null) {
+			System.out.println("El redactor que busques no existeix");
+
+		} else {
+			ArrayList<Noticia> noticies = redactorBuscat.getNoticies();
+			System.out.println("Introdueix el titular de la noticia a eliminar: ");
+			String titular = sc.nextLine();
+
+			Noticia noticiaBuscada = buscarNoticia(noticies, titular);
+
+			if (noticiaBuscada == null) {
+				System.out.println("La noticia que busques no existeix");
+
+			} else {
+				System.out.println("La noticia:\n" + noticiaBuscada + "\nHa estat eliminada correctament.");
+				noticies.remove(noticiaBuscada);
+
+			}
+
+		}
 	}
 
 	private static void introduirNoticiaRedactor(ArrayList<Redactor> llistaRedactors) {
@@ -65,36 +145,85 @@ public class Main {
 			case 1:
 				// FUTBOL
 				noticiaFutbol(redactorBuscat.getNoticies());
+				sortir = true;
 				break;
 			case 2:
 				// BASQUET
-				// quina competició fa referència(String) i a quin club(String).
 				noticiaBasquet(redactorBuscat.getNoticies());
-
+				sortir = true;
 				break;
 			case 3:
 				// TENIS
-				// competició(String) parlen i de quins tenistes(String).
+				noticiaTenis(redactorBuscat.getNoticies());
+				sortir = true;
 				break;
 			case 4:
 				// FORMULA 1
-				// escuderia(String) fan referència.
-
+				noticiaFormula1(redactorBuscat.getNoticies());
+				sortir = true;
 				break;
 			case 5:
 				// MOTOCICLISME
-				// de quin equip(String) són.
-
+				noticiaMotociclisme(redactorBuscat.getNoticies());
+				sortir = true;
 				break;
 
 			}
+
 		}
 
 	}
 
-	private static void noticiaBasquet(ArrayList<Noticia> noticies) {
-		// TODO Auto-generated method stub
+	private static void noticiaMotociclisme(ArrayList<Noticia> noticies) {
+		Scanner sc = new Scanner(System.in);
 
+		System.out.print("Introdueix el titular de la noticia: ");
+		String titular = sc.nextLine();
+		System.out.print("Introdueix l'equip: ");
+		String equip = sc.nextLine();
+
+		noticies.add(new Motociclisme(titular, equip));
+		System.out.println("S'ha introduit la noticia correctament");
+	}
+
+	private static void noticiaFormula1(ArrayList<Noticia> noticies) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Introdueix el titular de la noticia: ");
+		String titular = sc.nextLine();
+		System.out.print("Introdueix la esquedria: ");
+		String esquderia = sc.nextLine();
+
+		noticies.add(new Formula1(titular, esquderia));
+		System.out.println("S'ha introduit la noticia correctament");
+	}
+
+	private static void noticiaTenis(ArrayList<Noticia> noticies) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Introdueix el titular de la noticia: ");
+		String titular = sc.nextLine();
+		System.out.print("Introdueix la competicó: ");
+		String competicio = sc.nextLine();
+		System.out.print("Introdueix el tenista: ");
+		String tenista = sc.nextLine();
+
+		noticies.add(new Tenis(titular, competicio, tenista));
+		System.out.println("S'ha introduit la noticia correctament");
+	}
+
+	private static void noticiaBasquet(ArrayList<Noticia> noticies) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Introdueix el titular de la noticia: ");
+		String titular = sc.nextLine();
+		System.out.print("Introdueix la competicó: ");
+		String competicio = sc.nextLine();
+		System.out.print("Introdueix el club: ");
+		String club = sc.nextLine();
+
+		noticies.add(new Basquet(titular, competicio, club));
+		System.out.println("S'ha introduit la noticia correctament");
 	}
 
 	private static void noticiaFutbol(ArrayList<Noticia> noticies) {
@@ -109,9 +238,13 @@ public class Main {
 		System.out.print("Introdueix el nom del jugador: ");
 		String jugador = sc.nextLine();
 
-		noticies.add(new Futbol(titular, competicio, club, jugador));
+		Noticia noticia = new Futbol(titular, competicio, club, jugador);
+
+		noticies.add(noticia);
 		System.out.println("S'ha introduit la noticia correctament");
-		System.out.println(noticies);
+
+		noticia.puntuacioNoticia();
+		noticia.preuNoticia();
 
 	}
 
@@ -164,6 +297,23 @@ public class Main {
 		}
 
 		return redactor;
+	}
+
+	public static Noticia buscarNoticia(ArrayList<Noticia> list, String titular) {
+		Noticia noticia = null;
+		boolean trovat = false;
+		int size = list.size(), i = 0;
+
+		while (!trovat && i < size) {
+			if (list.get(i).getTitular().equalsIgnoreCase(titular)) {
+				trovat = true;
+				noticia = list.get(i);
+			}
+
+			i++;
+		}
+
+		return noticia;
 	}
 
 	private static int menu() {

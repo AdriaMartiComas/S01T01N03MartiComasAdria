@@ -38,13 +38,23 @@ public class Futbol extends Noticia {
 
 	@Override
 	public String toString() {
-		return "Futbol [competicio=" + competicio + ", club=" + club + ", jugador=" + jugador + "]";
+		return "Futbol [Titular= " + super.getTitular() + ", competicio=" + competicio + ", club=" + club + ", jugador="
+				+ jugador + "]";
 	}
 
 	@Override
 	public void preuNoticia() {
-		// TODO Auto-generated method stub
+		int preu = 300;
+		if (this.competicio.equalsIgnoreCase("Lliga de Campions"))
+			preu = preu + 100;
 
+		if (this.club.equalsIgnoreCase("Barça") || this.club.equalsIgnoreCase("Madrid"))
+			preu = preu + 100;
+
+		if (this.jugador.equalsIgnoreCase("Ferran Torres") || this.jugador.equalsIgnoreCase("Benzema"))
+			preu = preu + 50;
+		
+		super.setPreu(preu);
 	}
 
 	@Override
