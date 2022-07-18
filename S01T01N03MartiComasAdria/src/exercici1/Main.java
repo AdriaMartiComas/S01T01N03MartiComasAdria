@@ -3,25 +3,6 @@ package exercici1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*
- * A la classe principal s’ha de fer un menú amb les següents opcions:
-
-1.- Introduir redactor.
-
-2.- Eliminar redactor.
-
-3.- Introduir notícia a un redactor.
-
-4.- Eliminar notícia (ha de demanar redactor i titular de la notícia).
-
-5.- Mostrar totes les notícies per redactor.
-
-6.- Calcular puntuació de la notícia.
-
-7.- Calcular preu-notícia.
- * 
- */
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -75,8 +56,6 @@ public class Main {
 			System.out.println("El redactor que busques no existeix");
 			sortir = true;
 		}
-		
-		
 
 		while (!sortir) {
 			switch (menuNoticies()) {
@@ -84,29 +63,27 @@ public class Main {
 				sortir = true;
 				break;
 			case 1:
-				//FUTBOL
+				// FUTBOL
 				noticiaFutbol(redactorBuscat.getNoticies());
 				break;
 			case 2:
-				//BASQUET
-				//quina competició fa referència(String) i a quin club(String).
+				// BASQUET
+				// quina competició fa referència(String) i a quin club(String).
 				noticiaBasquet(redactorBuscat.getNoticies());
-
 
 				break;
 			case 3:
-				//TENIS
-				//competició(String) parlen i de quins tenistes(String).
+				// TENIS
+				// competició(String) parlen i de quins tenistes(String).
 				break;
 			case 4:
-				//FORMULA 1
+				// FORMULA 1
 				// escuderia(String) fan referència.
-
 
 				break;
 			case 5:
-				//MOTOCICLISME
-				//de quin equip(String) són.
+				// MOTOCICLISME
+				// de quin equip(String) són.
 
 				break;
 
@@ -117,12 +94,12 @@ public class Main {
 
 	private static void noticiaBasquet(ArrayList<Noticia> noticies) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private static void noticiaFutbol(ArrayList<Noticia> noticies) {
 		Scanner sc = new Scanner(System.in);
-		
+
 		System.out.print("Introdueix el titular de la noticia: ");
 		String titular = sc.nextLine();
 		System.out.print("Introdueix la competicó: ");
@@ -131,7 +108,7 @@ public class Main {
 		String club = sc.nextLine();
 		System.out.print("Introdueix el nom del jugador: ");
 		String jugador = sc.nextLine();
-		
+
 		noticies.add(new Futbol(titular, competicio, club, jugador));
 		System.out.println("S'ha introduit la noticia correctament");
 		System.out.println(noticies);
