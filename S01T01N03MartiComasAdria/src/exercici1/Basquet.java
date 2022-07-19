@@ -45,7 +45,18 @@ public class Basquet extends Noticia {
 
 	@Override
 	public void puntuacioNoticia() {
-		// TODO Auto-generated method stub
+		int puntuacio = 4;
+
+		if (this.competicio.equalsIgnoreCase("Eurolliga"))
+			puntuacio = puntuacio + 3;
+
+		if (this.competicio.equalsIgnoreCase("ACB"))
+			puntuacio = puntuacio + 2;
+
+		if (this.club.equalsIgnoreCase("Barça") || this.club.equalsIgnoreCase("Madrid"))
+			puntuacio = puntuacio + 1;
+
+		super.setPuntuacio(puntuacio);
 
 	}
 

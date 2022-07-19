@@ -53,13 +53,27 @@ public class Futbol extends Noticia {
 
 		if (this.jugador.equalsIgnoreCase("Ferran Torres") || this.jugador.equalsIgnoreCase("Benzema"))
 			preu = preu + 50;
-		
+
 		super.setPreu(preu);
 	}
 
 	@Override
 	public void puntuacioNoticia() {
-		// TODO Auto-generated method stub
+		int puntuacio = 5;
+
+		if (this.competicio.equalsIgnoreCase("Lliga de Campions"))
+			puntuacio = puntuacio + 3;
+
+		if (this.competicio.equalsIgnoreCase("Lliga"))
+			puntuacio = puntuacio + 2;
+
+		if (this.club.equalsIgnoreCase("Barça") || this.club.equalsIgnoreCase("Madrid"))
+			puntuacio = puntuacio + 1;
+
+		if (this.jugador.equalsIgnoreCase("Ferran Torres") || this.jugador.equalsIgnoreCase("Benzema"))
+			puntuacio = puntuacio + 1;
+
+		super.setPuntuacio(puntuacio);
 
 	}
 

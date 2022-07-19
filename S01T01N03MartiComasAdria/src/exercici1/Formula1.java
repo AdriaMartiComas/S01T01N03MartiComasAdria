@@ -33,8 +33,12 @@ public class Formula1 extends Noticia {
 
 	@Override
 	public void puntuacioNoticia() {
-		// TODO Auto-generated method stub
+		int puntuacio = 4;
 
+		if (this.escuderia.equalsIgnoreCase("Ferrari") || this.escuderia.equalsIgnoreCase("Mercedes"))
+			puntuacio = puntuacio + 2;
+
+		super.setPuntuacio(puntuacio);
 	}
 
 }

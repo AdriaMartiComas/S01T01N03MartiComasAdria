@@ -10,8 +10,14 @@ public class Main {
 		ArrayList<Redactor> llistaRedactors = new ArrayList<Redactor>();
 
 		// Proves
-		llistaRedactors.add(new Redactor("Adria", "47943391Y"));
+		llistaRedactors.add(new Redactor("Adria", "12345678A"));
+		llistaRedactors.add(new Redactor("Eulalia", "01234567B"));
 		llistaRedactors.get(0).getNoticies().add(new Motociclisme("Marc guanya a Montmelo", "Honda"));
+		llistaRedactors.get(0).getNoticies().add(new Futbol("Final Champions", "Lliga de Campions", "Barça", "Messi"));
+		
+		llistaRedactors.get(1).getNoticies().add(new Basquet("Pretemporada ACB", "ACB", "Madrid"));
+		llistaRedactors.get(1).getNoticies().add(new Tenis("Roland", "Roland garros", "Nadal"));
+		llistaRedactors.get(1).getNoticies().add(new Formula1("Premi Montmelo", "Ferrari"));
 
 		do {
 			switch (menu()) {
@@ -38,40 +44,53 @@ public class Main {
 				puntuacioNoticia(llistaRedactors);
 				break;
 			case 7:
-//				preuNoticia();
+				preuNoticia(llistaRedactors);
 
 			}
 		} while (!sortir);
+	}
+
+	private static void preuNoticia(ArrayList<Redactor> llistaRedactors) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\nPREU NOTÍCIA");
+		System.out.println("Introdueix el titular de la noticia:");
+		String titular = sc.nextLine();
+		int i = 0, size = llistaRedactors.size();
+		boolean trovat = false;
+		Noticia noticia = null;
+
+		while (!trovat && i < size) {
+			noticia = buscarNoticia(llistaRedactors.get(i).getNoticies(), titular);
+			if (noticia != null) {
+				trovat = true;
+				noticia.preuNoticia();
+			}
+			i++;
+		}
+		System.out.println("El preu de la noticia: " + titular + " és de: " + noticia.getPreu() + "€.");
+
 	}
 
 	private static void puntuacioNoticia(ArrayList<Redactor> llistaRedactors) {
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\nPUNTUACIO NOTÍCIA");
-		System.out.println("Introdueix el DNI del redactor:");
-		String dni = sc.nextLine();
+		System.out.println("Introdueix el titular de la noticia:");
+		String titular = sc.nextLine();
+		int i = 0, size = llistaRedactors.size();
+		boolean trovat = false;
+		Noticia noticia = null;
 
-		Redactor redactorBuscat = buscarRedactor(llistaRedactors, dni);
-		if (redactorBuscat == null) {
-			System.out.println("El redactor que busques no existeix");
-
-		} else {
-			ArrayList<Noticia> noticies = redactorBuscat.getNoticies();
-			System.out.println("Introdueix el titular de la noticia: ");
-			String titular = sc.nextLine();
-
-			Noticia noticiaBuscada = buscarNoticia(noticies, titular);
-
-			if (noticiaBuscada == null) {
-				System.out.println("La noticia que busques no existeix");
-
-			} else {
-				System.out.println("la Puntuacio de la noticia: " + titular + " és de: " + noticiaBuscada.getPuntuacio()
-						+ " punts");
-
+		while (!trovat && i < size) {
+			noticia = buscarNoticia(llistaRedactors.get(i).getNoticies(), titular);
+			if (noticia != null) {
+				trovat = true;
+				noticia.puntuacioNoticia();
 			}
-
+			i++;
 		}
+		System.out.println("La puntuació de la noticia: " + titular + " és de: " + noticia.getPuntuacio() + " punts.");
+
 	}
 
 	private static void mostrarNoticiesRedactor(ArrayList<Redactor> llistaRedactors) {
@@ -243,9 +262,6 @@ public class Main {
 		noticies.add(noticia);
 		System.out.println("S'ha introduit la noticia correctament");
 
-		noticia.puntuacioNoticia();
-		noticia.preuNoticia();
-
 	}
 
 	private static void eliminarRedactor(ArrayList<Redactor> llistaRedactors) {
@@ -330,7 +346,7 @@ public class Main {
 			System.out.println("4. Eliminar notícia");
 			System.out.println("5. Mostrar totes les notícies per redactor");
 			System.out.println("6. Calcular puntuació de la notícia");
-			System.out.println("7. Calcular preu-notícia");
+			System.out.println("7. Calcular preu notícia");
 
 			System.out.println("0. Sortir de l'aplicacio");
 

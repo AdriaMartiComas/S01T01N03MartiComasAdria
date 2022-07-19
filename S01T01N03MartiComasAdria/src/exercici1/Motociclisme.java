@@ -33,8 +33,12 @@ public class Motociclisme extends Noticia {
 
 	@Override
 	public void puntuacioNoticia() {
-		// TODO Auto-generated method stub
+		int puntuacio = 3;
 
+		if (this.equip.equalsIgnoreCase("Honda") || this.equip.equalsIgnoreCase("Yamaha"))
+			puntuacio = puntuacio + 3;
+
+		super.setPuntuacio(puntuacio);
 	}
 
 }

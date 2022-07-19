@@ -44,8 +44,12 @@ public class Tenis extends Noticia {
 
 	@Override
 	public void puntuacioNoticia() {
-		// TODO Auto-generated method stub
+		int puntuacio = 4;
 
+		if (this.tenista.equalsIgnoreCase("Federer") || this.tenista.equalsIgnoreCase("Nadal")
+				|| this.tenista.equalsIgnoreCase("Djokovic"))
+			puntuacio = puntuacio + 3;
+		super.setPuntuacio(puntuacio);
 	}
 
 }
